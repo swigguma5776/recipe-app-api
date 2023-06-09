@@ -1,2 +1,2 @@
 # recipe-app-api
-Recipe API project
+A Recipe Backend REST API utilizing Python/Django, Docker, Github Actions, and AWS Deployment
