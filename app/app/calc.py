@@ -3,7 +3,7 @@ Calculator Functions
 """
 
 
-def add(x,y):
+def add(x, y):
     """
     Add x & y and returns results.
     """
@@ -14,4 +14,4 @@ def subtract(x, y):
     """
     Subtract x & y and return results
     """
-    return y - x 
+    return y - x
