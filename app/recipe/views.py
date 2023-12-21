@@ -33,12 +33,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user) #new recipess created are saved to the current authenticated user
 
 
-class TagViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+class TagViewSet(mixins.UpdateModelMixin, 
+                mixins.DestroyModelMixin,
+                viewsets.GenericViewSet,
+                mixins.ListModelMixin):
     """Manage tags in the database."""
     serializer_class = serializers.TagSerializer
     queryset = Tag.objects.all()
     authentication_classes = [TokenAuthentication]
-    permision_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
         """Filter querset to authenticated user."""
