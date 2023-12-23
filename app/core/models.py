@@ -2,6 +2,9 @@
 Database models.
 """
 
+import uuid
+import os
+
 from django.db import models
 from django.conf import settings 
 from django.contrib.auth.models import (
@@ -9,6 +12,14 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
+
+def recipe_image_file_path(instance, filename):
+    """Generate file path for new recipe image."""
+    ext = os.path.splitext(filename)[1] #splits the filname and grabs the extension
+    filename = f"{uuid.uuid4()}{ext}" #create new file name with the uuid & original extension
+    
+    return os.path.join('uploads', 'recipe', filename) #using os.path to make sure the 
+                                                       #string is correct format no matter the operating system
 
 class UserManager(BaseUserManager):
     """Manager for users."""
@@ -59,6 +70,7 @@ class Recipe(models.Model):
     link = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField('Tag')
     ingredients = models.ManyToManyField('Ingredient')
+    image = models.ImageField(null=True, upload_to=recipe_image_file_path) #allows you to specify a function to generate the endpoint/path name
     
     def __str__(self):
         return self.title
