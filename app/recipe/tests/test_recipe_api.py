@@ -15,6 +15,11 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
+import os
+from django import setup
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+setup()
 from core.models import Recipe, Tag, Ingredient
 
 from recipe.serializers import (
