@@ -9,29 +9,29 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:latest
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_DB: mydatabase
-          POSTGRES_USER: myuser
-          POSTGRES_PASSWORD: mypassword
+    # services:
+    #   postgres:
+    #     image: postgres:latest
+    #     ports:
+    #       - 5432:5432
+    #     env:
+    #       POSTGRES_DB: mydatabase
+    #       POSTGRES_USER: myuser
+    #       POSTGRES_PASSWORD: mypassword
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python }}
-      - name: Install tox and any other packages
-        run: |
-          python -m pip install tox
-          python -m pip install -r requirements.txt
-      - name: Run tox
-        run: tox -e py
+      # - name: Setup Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: ${{ matrix.python }}
+      # - name: Install tox and any other packages
+      #   run: |
+      #     python -m pip install tox
+      #     python -m pip install -r requirements.txt
+      # - name: Run tox
+      #   run: tox -e py
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

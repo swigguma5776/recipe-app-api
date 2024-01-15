@@ -100,13 +100,15 @@ DATABASES = {
 
 
 if 'test' in sys.argv and 'GITHUB_ACTIONS' in os.environ:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydatabase',
+            'USER': 'myuser',
+            'PASSWORD': 'mypassword',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
 
 
