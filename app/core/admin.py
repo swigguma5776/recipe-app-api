@@ -11,9 +11,10 @@ from core import models
 
 class UserAdmin(BaseUserAdmin):
     
+    
     """  Define the admin pages for users.  """
-    ordering = ['id'] # orders the users by id
-    list_display = ['email', 'name'] # displays their email & name
+    ordering = ['id']  # orders the users by id
+    list_display = ['email', 'name']  # displays their email & name
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (
