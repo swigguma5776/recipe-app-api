@@ -2,6 +2,8 @@
 Tests for the ingredients API.
 """
 
+import os
+from django import setup
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
@@ -11,9 +13,6 @@ from django.test import TestCase
 
 from rest_framework import status
 from rest_framework.test import APIClient
-
-import os
-from django import setup
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 setup()

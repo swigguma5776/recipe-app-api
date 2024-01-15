@@ -2,18 +2,16 @@
 Tests for models.
 """
 
+import os
+from django import setup
 from unittest.mock import patch
 from decimal import Decimal 
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-#using other models sbesides user models we will need to import directly
-import os
-from django import setup
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 setup()
-
 from core import models
 
 def create_user(email='user@example.com', password='testpass123'):
