@@ -1,36 +1,58 @@
-name: Build
+# name: Build
 
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+    # name: Build
+    # runs-on: ubuntu-latest
+    # permissions: read-all
+    # steps:
+    #   - uses: actions/checkout@v2
+    #     with:
+    #       fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+    #   # - name: Check network connectivity
+    #   #   run: |
+    #   #     # SONAR_HOST=$(echo ${{ secrets.SONAR_HOST_URL }} | awk -F[/:] '{print $4}')
+    #   #     ping -c 5 http://192.168.0.181
+    #   #     # OR
+    #   #     curl -I http://$SONAR_HOST:9000
+
+    #   - uses: sonarsource/sonarqube-scan-action@master
+    #     env:
+    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #       SONAR_HOST_URL: http://192.168.0.181:9000 
+    #     with:
+    #       args: -X  # Add the -X switch for debug logging
+    #   # If you wish to fail your job when the Quality Gate is red, uncomment the
+    #   # following lines. This would typically be used to fail a deployment.
+    #   # - uses: sonarsource/sonarqube-quality-gate-action@master
+    #   #   timeout-minutes: 5
+    #   #   env:
+    #   #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
+    
+name: Build
 on:
   push:
     branches:
-      - main
-
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-  build:
-    name: Build
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
-    permissions: read-all
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-      # - name: Check network connectivity
-      #   run: |
-      #     # SONAR_HOST=$(echo ${{ secrets.SONAR_HOST_URL }} | awk -F[/:] '{print $4}')
-      #     ping -c 5 http://192.168.0.181
-      #     # OR
-      #     curl -I http://$SONAR_HOST:9000
-
-      - uses: sonarsource/sonarqube-scan-action@master
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: http://192.168.0.181:9000 
-        with:
-          args: -X  # Add the -X switch for debug logging
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      # - uses: sonarsource/sonarqube-quality-gate-action@master
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
