@@ -20,7 +20,7 @@ jobs:
           SONAR_HOST=$(echo ${{ secrets.SONAR_HOST_URL }} | awk -F[/:] '{print $4}')
           ping -c 5 $SONAR_HOST
           # OR
-          curl -I ${{ secrets.SONAR_HOST_URL }}
+          curl -I http://$SONAR_HOST:9000
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
