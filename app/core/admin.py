@@ -12,7 +12,7 @@ from core import models
 class UserAdmin(BaseUserAdmin):
     
     
-    """  Define the admin pages for users.  """
+    """Define the admin pages for users."""
     ordering = ['id']  # orders the users by id
     list_display = ['email', 'name']  # displays their email & name
     fieldsets = (
@@ -43,9 +43,9 @@ class UserAdmin(BaseUserAdmin):
                 )
         }),
     )
-    
-    
-admin.site.register(models.User, UserAdmin) 
+
+
+admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Recipe)
 admin.site.register(models.Tag)
 admin.site.register(models.Ingredient)
