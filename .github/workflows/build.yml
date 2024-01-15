@@ -17,7 +17,8 @@ jobs:
 
       - name: Check network connectivity
         run: |
-          ping -c 5 ${{ secrets.SONAR_HOST_URL }}
+          SONAR_HOST=$(echo ${{ secrets.SONAR_HOST_URL }} | awk -F[/:] '{print $4}')
+          ping -c 5 $SONAR_HOST
           # OR
           curl -I ${{ secrets.SONAR_HOST_URL }}
 
