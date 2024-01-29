@@ -12,8 +12,11 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 #### `git clone https://github.com/swigguma5776/recipe-app-api.git`
 
+
+
 2. Change into the project directory:
 #### `cd recipe-app-api`
+
 
 
 3. Build and start the Docker containers:
