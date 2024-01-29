@@ -25,7 +25,7 @@ Make sure you have the following installed on your machine:
 
 ## Usage
 ### API Endpoints
-The API endpoints can be accessed through http://localhost:8000/api/.
+The API endpoints can be accessed through http://localhost:8000/api/docs.
 
 ### Database
 The Django API uses a postgres database container. The database connection details and configurations can be found in the docker-compose-deploy.yml file.
