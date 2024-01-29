@@ -22,3 +22,15 @@ Make sure you have the following installed on your machine:
 3. Build and start the Docker containers:
 ####   `docker-compose -f docker-compose-deploy.yml up -d`
 
+
+## Usage
+### API Endpoints
+The API endpoints can be accessed through http://localhost:8000/api/.
+
+### Database
+The Django API uses a postgres database container. The database connection details and configurations can be found in the docker-compose-deploy.yml file.
+
+### Running Tests
+To run tests, use the following command:
+####   `docker-compose run --rm app sh -c "python manage.py test"`
+
